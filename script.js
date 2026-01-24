@@ -70,40 +70,51 @@
   }
 
   // =============================================================================
-  // 4. ACTIVE SECTION IN NAV — Highlight nav link for section in view
+  // 4. ACTIVE SECTION IN NAV — Highlight nav link; order always Home, About,
+  //    Projects, Contact. Section id -> data-section: about->about, projects->projects,
+  //    skills->projects, contact->contact; at top of index -> home.
   // =============================================================================
   function initActiveNav() {
     var navLinks = document.querySelectorAll('nav a[data-section]');
     if (!navLinks.length) return;
 
-    // On about.html, only the "About" link has a matching concept; set it active.
-    if (document.querySelector('body').classList.contains('page-about')) {
+    // On about.html: "About" is active.
+    if (document.body && document.body.classList.contains('page-about')) {
       navLinks.forEach(function (a) {
         a.classList.toggle('active', a.getAttribute('data-section') === 'about');
       });
       return;
     }
 
-    var sectionIds = ['about', 'projects', 'skills', 'contact'];
-    var sections = sectionIds
+    // On index: home, about, projects, contact. Map section id -> data-section
+    // (skills has no nav item, so #skills -> projects).
+    var sectionIdToNav = { about: 'about', projects: 'projects', skills: 'projects', contact: 'contact' };
+    var aboutEl = document.getElementById('about');
+    var sections = ['about', 'projects', 'skills', 'contact']
       .map(function (id) { return document.getElementById(id); })
       .filter(Boolean);
 
     function updateActive() {
       var topThreshold = 200;
-      var activeId = null;
+      var activeSection = 'home';
 
-      for (var i = sections.length - 1; i >= 0; i--) {
-        var rect = sections[i].getBoundingClientRect();
-        if (rect.top <= topThreshold) {
-          activeId = sections[i].id;
-          break;
+      // At top of home: #about not yet past threshold -> "Home" active.
+      if (aboutEl) {
+        var aboutTop = aboutEl.getBoundingClientRect().top;
+        if (aboutTop <= topThreshold) {
+          var sectionId = null;
+          for (var i = sections.length - 1; i >= 0; i--) {
+            if (sections[i].getBoundingClientRect().top <= topThreshold) {
+              sectionId = sections[i].id;
+              break;
+            }
+          }
+          if (sectionId) activeSection = sectionIdToNav[sectionId] || activeSection;
         }
       }
-      if (!activeId && sections.length) activeId = sections[0].id;
 
       navLinks.forEach(function (a) {
-        a.classList.toggle('active', a.getAttribute('data-section') === activeId);
+        a.classList.toggle('active', a.getAttribute('data-section') === activeSection);
       });
     }
 
