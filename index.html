@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,19 +8,28 @@
     <meta name="author" content="Connor Choe">
     <title>Connor Choe | Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+      (function(){ if (sessionStorage.getItem('portfolio-loaded')) document.documentElement.classList.add('loading-skip'); })();
+    </script>
 </head>
 <body>
 
+    <!-- Loading overlay: "Initializing..." — removed by script.js after 1.5s -->
+    <div id="loading-overlay" class="loading-overlay" role="status" aria-live="polite">
+        <p class="loading-overlay__text">Initializing...</p>
+        <div class="loading-bar"><span class="loading-bar__inner"></span></div>
+    </div>
+
     <header role="banner">
         <h1>Connor Choe</h1>
-        <p>Statistics and Machine Learning Student at Carnegie Mellon University</p>
+        <p id="tagline">Statistics and Machine Learning Student at Carnegie Mellon University</p>
         
         <nav role="navigation" aria-label="Main navigation">
             <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="about.html" data-section="about">About</a></li>
+                <li><a href="#projects" data-section="projects">Projects</a></li>
+                <li><a href="#skills" data-section="skills">Skills</a></li>
+                <li><a href="#contact" data-section="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -28,7 +37,7 @@
     <main role="main">
         <section id="about" aria-labelledby="about-heading">
             <h2 id="about-heading">About Me</h2>
-            <img src="profile-photo.jpg" alt="Connor Choe profile photo" width="200" loading="lazy">
+            <img src="headshot.jpg" alt="Connor Choe profile photo" width="200" loading="lazy">
             
             <p>
                 [Your personalized bio will go here. You can describe your background in statistics, 
@@ -53,7 +62,7 @@
                         height="460"
                         src="https://academy.cs.cmu.edu/sharing/greenYellowKangaroo342562/embed"
                         allow="autoplay; fullscreen" 
-                        sandbox="allow-scripts allow-same-origin allow-forms"
+                        sandbox="allow-scripts allow-same-origin allow-forms allow-fullscreen"
                         title="Survive112 Game Preview"
                         style="border: 2px solid #C0C0C0; background: #000;">
                     </iframe>
@@ -131,8 +140,13 @@
     </main>
 
     <footer role="contentinfo">
-        <p>&copy; 2026 Connor Choe. Built with clarity and discipline.</p>
+        <p>&copy; <span id="footer-year">2026</span> Connor Choe</p>
     </footer>
 
+    <!-- Background music: add audio/ambient.mp3 to enable -->
+    <audio id="bg-music" src="audio/ambient.mp3" loop preload="metadata"></audio>
+    <button id="audio-toggle" class="audio-control" type="button" aria-label="Play background music" title="Play background music">♪</button>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -8,18 +8,27 @@
     <meta name="author" content="Connor Choe">
     <title>About Connor Choe</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+      (function(){ if (sessionStorage.getItem('portfolio-loaded')) document.documentElement.classList.add('loading-skip'); })();
+    </script>
 </head>
-<body>
+<body data-page="about">
+
+    <!-- Loading overlay: "Initializing..." — removed by script.js after 1.5s -->
+    <div id="loading-overlay" class="loading-overlay" role="status" aria-live="polite">
+        <p class="loading-overlay__text">Initializing...</p>
+        <div class="loading-bar"><span class="loading-bar__inner"></span></div>
+    </div>
 
     <header role="banner">
         <h1>Connor Choe</h1>
-        <p>Statistics and Machine Learning Student at Carnegie Mellon University</p>
+        <p id="tagline">Statistics and Machine Learning Student at Carnegie Mellon University</p>
         <nav role="navigation" aria-label="Main navigation">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="index.html" data-section="home">Home</a></li>
+                <li><a href="about.html" data-section="about">About</a></li>
+                <li><a href="index.html#projects" data-section="projects">Projects</a></li>
+                <li><a href="index.html#contact" data-section="contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -88,7 +97,13 @@
     </main>
 
     <footer role="contentinfo">
-        <p>&copy; 2026 Connor Choe. Built with clarity and discipline.</p>
+        <p>&copy; <span id="footer-year">2026</span> Connor Choe. Built with clarity and discipline.</p>
     </footer>
+
+    <!-- Background music: add audio/ambient.mp3 to enable -->
+    <audio id="bg-music" src="audio/ambient.mp3" loop preload="metadata"></audio>
+    <button id="audio-toggle" class="audio-control" type="button" aria-label="Play background music" title="Play background music">♪</button>
+
+    <script src="script.js"></script>
 </body>
 </html>
