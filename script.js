@@ -242,6 +242,9 @@
   // Init: run when DOM is ready
   // -----------------------------------------------------------------------------
   function init() {
+    // Force scroll to top on page load
+    window.scrollTo(0, 0);
+    
     initFooterYear();
     initParticles();
     initBackgroundMusic();
