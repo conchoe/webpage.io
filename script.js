@@ -254,7 +254,9 @@
   // -----------------------------------------------------------------------------
   function init() {
     // Force scroll to top on page load
-    window.scrollTo(0, 0);
+    if (window.scrollY !== 0) {
+      window.scrollTo(0, 0);
+    }
     
     initFooterYear();
     initParticles();
