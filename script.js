@@ -7,18 +7,26 @@
 
   var isInitializing = true;
 
-  // Force scroll to top immediately on page load
+  // Force scroll to top on load — overrides hash (#projects) and scroll restoration
+  window.scrollTo(0, 0);
+  function forceScrollTop() {
+    window.scrollTo(0, 0);
+  }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
-      window.scrollTo(0, 0);
+      forceScrollTop();
       isInitializing = false;
-      setTimeout(() => document.documentElement.classList.add('loaded'), 100);
+      setTimeout(function() { document.documentElement.classList.add('loaded'); }, 100);
     });
   } else {
-    window.scrollTo(0, 0);
+    forceScrollTop();
     isInitializing = false;
     document.documentElement.classList.add('loaded');
   }
+  window.addEventListener('load', function() {
+    forceScrollTop();
+    requestAnimationFrame(forceScrollTop);
+  });
 
   // =============================================================================
   // 1. FOOTER YEAR — Dynamic year via new Date().getFullYear()
