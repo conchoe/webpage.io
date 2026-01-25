@@ -5,14 +5,18 @@
 (function () {
   'use strict';
 
+  var isInitializing = true;
+
   // Force scroll to top immediately on page load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo(0, 0);
+      isInitializing = false;
       setTimeout(() => document.documentElement.classList.add('loaded'), 100);
     });
   } else {
     window.scrollTo(0, 0);
+    isInitializing = false;
     document.documentElement.classList.add('loaded');
   }
 
@@ -97,8 +101,7 @@
       return;
     }
 
-    // On index: home, about, projects, contact. Map section id -> data-section
-    // (skills has no nav item, so #skills -> projects).
+    // On index: home, about, projects, contact.
     var sectionIdToNav = { about: 'about', projects: 'projects', skills: 'projects', contact: 'contact' };
     var aboutEl = document.getElementById('about');
     var sections = ['about', 'projects', 'skills', 'contact']
@@ -106,10 +109,11 @@
       .filter(Boolean);
 
     function updateActive() {
+      if (isInitializing) return; // Skip during initialization
+
       var topThreshold = 200;
       var activeSection = 'home';
 
-      // At top of home: #about not yet past threshold -> "Home" active.
       if (aboutEl) {
         var aboutTop = aboutEl.getBoundingClientRect().top;
         if (aboutTop <= topThreshold) {
@@ -253,11 +257,6 @@
   // Init: run when DOM is ready
   // -----------------------------------------------------------------------------
   function init() {
-    // Force scroll to top on page load
-    if (window.scrollY !== 0) {
-      window.scrollTo(0, 0);
-    }
-    
     initFooterYear();
     initParticles();
     initBackgroundMusic();
