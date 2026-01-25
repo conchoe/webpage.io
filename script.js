@@ -1,6 +1,8 @@
 /**
  * Portfolio site enhancements
  * Keeps the same dark, minimal theme and tone.
+ * Used Cursor to implement interactive features one at a time
+ * Have never used JavaScript before
  */
 (function () {
   'use strict';
