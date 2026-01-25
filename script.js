@@ -93,6 +93,32 @@
   }
 
   // =============================================================================
+  // 4a. SURVIVE112 IFRAME LAZY-LOAD — Load embed only when in view. Prevents the
+  //     embed from focusing/scroll-stealing on initial page load or refresh.
+  // =============================================================================
+  function initSurvive112LazyLoad() {
+    var container = document.querySelector('[data-embed-container]');
+    var iframe = container && container.querySelector('iframe[data-src]');
+    if (!container || !iframe) return;
+    var src = iframe.getAttribute('data-src');
+    if (!src) return;
+
+    var obs = new IntersectionObserver(
+      function (entries) {
+        for (var i = 0; i < entries.length; i++) {
+          if (entries[i].isIntersecting) {
+            iframe.src = src;
+            obs.disconnect();
+            return;
+          }
+        }
+      },
+      { rootMargin: '100px', threshold: 0 }
+    );
+    obs.observe(container);
+  }
+
+  // =============================================================================
   // 4. ACTIVE SECTION IN NAV — Highlight nav link; order always Home, About,
   //    Projects, Contact. Section id -> data-section: about->about, projects->projects,
   //    skills->projects, contact->contact; at top of index -> home.
@@ -268,6 +294,7 @@
     initFooterYear();
     initParticles();
     initBackgroundMusic();
+    initSurvive112LazyLoad();
     initActiveNav();
 
     initLoadingOverlay(function () {
