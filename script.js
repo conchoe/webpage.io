@@ -5,6 +5,17 @@
 (function () {
   'use strict';
 
+  // Force scroll to top immediately on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      window.scrollTo(0, 0);
+      setTimeout(() => document.documentElement.classList.add('loaded'), 100);
+    });
+  } else {
+    window.scrollTo(0, 0);
+    document.documentElement.classList.add('loaded');
+  }
+
   // =============================================================================
   // 1. FOOTER YEAR — Dynamic year via new Date().getFullYear()
   // =============================================================================
