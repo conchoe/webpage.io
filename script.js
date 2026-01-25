@@ -288,6 +288,29 @@
   }
 
   // -----------------------------------------------------------------------------
+  // Menu toggle for mobile — RUN FIRST
+  // -----------------------------------------------------------------------------
+  var menuToggle = document.getElementById('menu-toggle');
+  var navMenu = document.getElementById('nav-menu');
+
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
+    });
+
+    // Close menu when a link is clicked
+    navMenu.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  // -----------------------------------------------------------------------------
   // Init: run when DOM is ready
   // -----------------------------------------------------------------------------
   function init() {
