@@ -69,32 +69,6 @@
   }
 
   // =============================================================================
-  // 3. BACKGROUND MUSIC — Play/pause control; requires audio/ambient.mp3
-  // =============================================================================
-  function initBackgroundMusic() {
-    var audio = document.getElementById('bg-music');
-    var toggle = document.getElementById('audio-toggle');
-
-    if (!audio || !toggle) return;
-
-    audio.addEventListener('error', function () {
-      toggle.style.display = 'none';
-    });
-
-    toggle.addEventListener('click', function () {
-      if (audio.paused) {
-        audio.play().catch(function () { toggle.style.display = 'none'; });
-        toggle.classList.add('audio-control--playing');
-        toggle.setAttribute('aria-label', 'Pause background music');
-      } else {
-        audio.pause();
-        toggle.classList.remove('audio-control--playing');
-        toggle.setAttribute('aria-label', 'Play background music');
-      }
-    });
-  }
-
-  // =============================================================================
   // 4a. SURVIVE112 IFRAME LAZY-LOAD — Load embed only when in view. Prevents the
   //     embed from focusing/scroll-stealing on initial page load or refresh.
   // =============================================================================
@@ -292,24 +266,27 @@
   // -----------------------------------------------------------------------------
   // Menu toggle for mobile — RUN FIRST
   // -----------------------------------------------------------------------------
-  var menuToggle = document.getElementById('menu-toggle');
-  var navMenu = document.getElementById('nav-menu');
+  // Only initialize on mobile screens
+  if (window.innerWidth <= 768) {
+    var menuToggle = document.getElementById('menu-toggle');
+    var navMenu = document.getElementById('nav-menu');
 
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
-    });
-
-    // Close menu when a link is clicked
-    navMenu.querySelectorAll('a').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', menuToggle.classList.contains('active'));
       });
-    });
+
+      // Close menu when a link is clicked
+      navMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menuToggle.classList.remove('active');
+          navMenu.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
   }
 
   // -----------------------------------------------------------------------------
@@ -318,7 +295,6 @@
   function init() {
     initFooterYear();
     initParticles();
-    initBackgroundMusic();
     initSurvive112LazyLoad();
     initActiveNav();
 

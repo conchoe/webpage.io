@@ -282,6 +282,39 @@ nav a.active {
 }
 
 /* ============================================
+   HAMBURGER MENU — Hidden on desktop, visible on mobile
+   ============================================ */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 2px;
+  background-color: var(--text-secondary);
+  transition: all var(--transition-base);
+  border-radius: 2px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ============================================
    PROJECT CARDS
    ============================================ */
 #projects {
@@ -638,39 +671,6 @@ html.loading-skip #loading-overlay {
 
 @keyframes loading-fill {
   to { width: 100%; }
-}
-
-/* ============================================
-   AUDIO CONTROL — Background music toggle (script.js)
-   ============================================ */
-.audio-control {
-  position: fixed;
-  bottom: var(--spacing-md);
-  left: var(--spacing-md);
-  z-index: 1001;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border);
-  border-radius: 50%;
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: color var(--transition-base), border-color var(--transition-base), background-color var(--transition-base);
-}
-
-.audio-control:hover {
-  color: var(--accent);
-  border-color: var(--text-secondary);
-  background-color: var(--bg-tertiary);
-}
-
-.audio-control--playing {
-  color: var(--accent);
-  border-color: var(--text-secondary);
 }
 
 /* ============================================
