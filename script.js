@@ -324,8 +324,6 @@ async function getBarRoute() {
     resultsDiv.innerHTML = "<em>Finding the best bars...</em>";
 
     try {
-        // REPLACE the URL below with your Render URL once you deploy!
-        // Example: https://your-app-name.onrender.com/generate-route
         const backendUrl = `https://barhopper-3029.onrender.com/generate-route?address=${encodeURIComponent(address)}&stops=${stops}`;
         
         const response = await fetch(backendUrl);
