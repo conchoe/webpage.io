@@ -309,3 +309,40 @@
     init();
   }
 })();
+
+
+async function getBarRoute() {
+    const address = document.getElementById('bh-address').value;
+    const stops = document.getElementById('bh-stops').value;
+    const resultsDiv = document.getElementById('bh-results');
+
+    if (!address) {
+        resultsDiv.innerHTML = "<span style='color:red;'>Please enter an address first.</span>";
+        return;
+    }
+
+    resultsDiv.innerHTML = "<em>Finding the best bars...</em>";
+
+    try {
+        // REPLACE the URL below with your Render URL once you deploy!
+        // Example: https://your-app-name.onrender.com/generate-route
+        const backendUrl = `https://barhopper-3029.onrender.com/generate-route?address=${encodeURIComponent(address)}&stops=${stops}`;
+        
+        const response = await fetch(backendUrl);
+        const data = await response.json();
+
+        if (data.error || response.status !== 200) {
+            resultsDiv.innerHTML = `<span style="color:red;">Error: ${data.detail || data.error || 'Server error'}</span>`;
+        } else {
+            let html = `<ul style="list-style: none; padding: 0;">`;
+            data.route.forEach((bar, index) => {
+                html += `<li style="margin-bottom: 5px;"><strong>${index + 1}. ${bar.name}</strong> (${bar.rating} ⭐) <br> <small>+${bar.dist_from_last.toFixed(2)} mi walk</small></li>`;
+            });
+            html += `</ul>`;
+            html += `<a href="${data.map_url}" target="_blank" style="display: inline-block; margin-top: 10px; color: #d9534f; font-weight: bold;">🗺️ Open Full Route in Maps</a>`;
+            resultsDiv.innerHTML = html;
+        }
+    } catch (err) {
+        resultsDiv.innerHTML = `<span style="color:red;">Could not connect to the backend. Is the server running?</span>`;
+    }
+}

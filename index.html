@@ -56,6 +56,35 @@
 
         <section id="projects" aria-labelledby="projects-heading">
             <h2 id="projects-heading">Projects</h2>
+
+            <article>
+                <h3>BarHopper</h3>
+                <p>A quick one week project leveraging Google Places API and AI to build a bar hopping route finder</p>
+                <ul>    
+                    <li> Used tools like Gemini and AntiGravity to plan and execute creating the game </li>
+                    <li> Used requests module, dotenv module, implemented Haversine formula, and a greedy nearest-neighbor algorithm</li>
+                </ul>
+                <div class="project-demo">
+                <h4>Live Route Optimizer</h4>
+                <div class="demo-controls">
+                    <div class="input-group">
+                        <input type="text" id="bh-address" placeholder="Enter an address (e.g. Pittsburgh, PA)">
+                    </div>
+                    <div class="input-group row">
+                        <label for="bh-stops">Stops:</label>
+                        <input type="number" id="bh-stops" value="3" min="1" max="10">
+                        <button id="plan-route-btn" class="btn-primary" onclick="getBarRoute()">Plan My Route</button>
+                    </div>
+                </div>
+                <div id="bh-results" class="demo-results">
+                    </div>
+            </div>
+
+            <div class="project-links">
+                <a href="https://github.com/conchoe/BarHopper" class="github-link" rel="noopener noreferrer">View on GitHub</a>
+            </div>
+
+            </article>
             
             <article>
                 <h3> One Hour Crossy Road Challenge</h3>
