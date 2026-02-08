@@ -821,3 +821,39 @@ html.loading-skip #loading-overlay {
   white-space: nowrap;
   border-width: 0;
 }
+/* ============================================
+   BARHOPPER INTERACTIVE STYLES
+   ============================================ */
+
+.btn-secondary {
+  display: inline-block;
+  margin-top: 15px;
+  padding: var(--spacing-xs) var(--spacing-md);
+  color: var(--text-secondary); /* Silver text */
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-base);
+  background: transparent;
+}
+
+.btn-secondary:hover {
+  color: var(--accent); /* White text on hover */
+  border-color: var(--text-secondary);
+  background-color: rgba(192, 192, 192, 0.1);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Ensure the result items match the silver theme */
+.demo-results li {
+  border-left: 2px solid var(--border-light);
+  padding-left: 10px;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.demo-results strong {
+  color: var(--accent); /* Bar names in white */
+}
