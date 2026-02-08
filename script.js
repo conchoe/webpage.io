@@ -337,7 +337,7 @@ async function getBarRoute() {
                 html += `<li style="margin-bottom: 5px;"><strong>${index + 1}. ${bar.name}</strong> (${bar.rating} ⭐) <br> <small>+${bar.dist_from_last.toFixed(2)} mi walk</small></li>`;
             });
             html += `</ul>`;
-            html += `<a href="${data.map_url}" target="_blank" style="display: inline-block; margin-top: 10px; color: #d9534f; font-weight: bold;">🗺️ Open Full Route in Maps</a>`;
+            html += `<a href="${data.map_url}" target="_blank" style="display: inline-block; margin-top: 10px; color: #ccc3c3ff; font-weight: bold;">🗺️ Open Full Route in Maps</a>`;
             resultsDiv.innerHTML = html;
         }
     } catch (err) {
