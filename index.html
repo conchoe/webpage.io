@@ -58,7 +58,20 @@
             <h2 id="projects-heading">Projects</h2>
 
             <article>
-                <h3>CalendLy</h3>
+                <a href="https://our-land.onrender.com" >
+                <h3>Our Land</h3> </a> 
+                <p> Our Land is a full-stack geospatial monitoring tool that transforms dense federal policy data into an interactive "Field Guide" for conservationists. By integrating the Federal Register API with LLM-based analysis, the platform filters administrative noise to visualize real-time legislative impacts on U.S. public lands.</p>
+                <ul>    
+                    <li> Developed a FastAPI backend to ingest and process thousands of federal filings, implementing a custom logic filter to prune administrative "noise" and isolate high-priority environmental actions.</li>
+                    <li>Leveraged OpenAI APIs to perform automated sentiment analysis and impact scoring on complex legal documents, translating "Bureaucratese" into actionable categories and human-readable summaries. </li>
+                    <li>Built an interactive Leaflet.js frontend using Esri Shaded Relief terrain tiles and GeoJSON overlays to visualize the spatial relationship between new industrial permits and protected National Park boundaries.</li>
+                </ul>
+                <a href="https://github.com/conchoe/Our-Land" class="github-link" rel="noopener noreferrer">View on GitHub</a>
+            </article>
+
+            <article>
+                <a href="https://calendly-arc2.onrender.com" >
+                <h3>CalendLy</h3> </a>
                 <p> CalendLy is an AI-powered scheduling assistant built with Python (FastAPI) and OpenAI API leveraging tools like Gemini and AntiGravity. The app takes messy, human-written text and uses prompt engineering to extract complex recurring patterns, dates, and times. 
                     It then communicates with the Google Calendar API to generate dedicated, organized calendars for the user. Developed with a focus on data persistence (using Base64 state encoding) and secure authentication, it is fully deployed on Render.</p>
                 <ul>    
