@@ -344,6 +344,51 @@ article h3 {
   color: var(--accent);
 }
 
+/* Project title that is a link — match other h3 titles, no button styling */
+article a.project-title-link {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  margin-bottom: var(--spacing-sm);
+  margin-top: 0;
+  font-weight: inherit;
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+article a.project-title-link,
+article a.project-title-link:hover {
+  color: inherit;
+  background: transparent;
+  border-color: transparent;
+}
+
+article a.project-title-link h3 {
+  margin: 0;
+  color: var(--accent);
+  transition: text-decoration-color var(--transition-fast);
+}
+
+/* Subtle indication that the title is clickable */
+article a.project-title-link h3::after {
+  content: ' ↗';
+  font-size: 0.7em;
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+article a.project-title-link:hover h3 {
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.4);
+  text-underline-offset: 3px;
+}
+
+article a.project-title-link:hover h3::after {
+  opacity: 0.9;
+}
+
 article p {
   margin-bottom: var(--spacing-md);
 }
