@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Today I... — Connor Choe's daily journal of things learned and done.">
+    <meta name="keywords" content="Connor Choe, Journal, Today I, Learning Log">
+    <meta name="author" content="Connor Choe">
+    <title>Today I... | Connor Choe</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      (function(){ if (sessionStorage.getItem('portfolio-loaded')) document.documentElement.classList.add('loading-skip'); })();
+    </script>
+</head>
+<body data-page="today">
+
+    <div id="loading-overlay" class="loading-overlay" role="status" aria-live="polite">
+        <p class="loading-overlay__text">Initializing...</p>
+        <div class="loading-bar"><span class="loading-bar__inner"></span></div>
+    </div>
+
+    <header role="banner">
+        <h1>Connor Choe</h1>
+        <p id="tagline">Statistics and Machine Learning Student at Carnegie Mellon University</p>
+        <nav role="navigation" aria-label="Main navigation">
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu">
+                <li><a href="index.html" data-section="home">Home</a></li>
+                <li><a href="about.html" data-section="about">About</a></li>
+                <li><a href="today.html" data-section="today">Today I...</a></li>
+                <li><a href="index.html#projects" data-section="projects">Projects</a></li>
+                <li><a href="index.html#contact" data-section="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section id="today" aria-labelledby="today-heading">
+            <h2 id="today-heading">Today I...</h2>
+            <p>A daily journal of something I learned or something I did.</p>
+            <div class="journal-entries">
+<!-- ENTRIES -->
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>&copy; <span id="footer-year">2026</span> Connor Choe. Built with clarity and discipline.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

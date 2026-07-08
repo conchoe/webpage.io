@@ -111,6 +111,14 @@
       return;
     }
 
+    // On today.html: "Today I..." is active.
+    if (document.body && document.body.classList.contains('page-today')) {
+      navLinks.forEach(function (a) {
+        a.classList.toggle('active', a.getAttribute('data-section') === 'today');
+      });
+      return;
+    }
+
     // On index: home, about, projects, contact.
     var sectionIdToNav = { about: 'about', projects: 'projects', skills: 'projects', contact: 'contact' };
     var aboutEl = document.getElementById('about');
@@ -261,6 +269,9 @@
   // -----------------------------------------------------------------------------
   if (document.body && document.body.getAttribute('data-page') === 'about') {
     document.body.classList.add('page-about');
+  }
+  if (document.body && document.body.getAttribute('data-page') === 'today') {
+    document.body.classList.add('page-today');
   }
 
   // -----------------------------------------------------------------------------

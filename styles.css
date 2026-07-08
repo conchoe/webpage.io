@@ -414,6 +414,30 @@ article a:hover {
   background-color: rgba(192, 192, 192, 0.05);
 }
 
+.journal-entries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.journal-entries article time {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 0.02em;
+}
+
+.journal-body p:last-child {
+  margin-bottom: 0;
+}
+
+.journal-empty {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
 .game-preview {
   display: flex;
   flex-direction: column;
